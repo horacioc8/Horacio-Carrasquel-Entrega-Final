@@ -1,0 +1,17 @@
+.cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    width: 70px;
+    border-radius: 30px;
+    height: 50px;
+    border: 2px solid;
+    
+    .badge {
+        font-weight: bold;
+       
+      }
+}
+
+
