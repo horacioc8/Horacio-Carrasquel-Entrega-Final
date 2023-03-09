@@ -1,0 +1,42 @@
+
+ul{
+
+  list-style-type: none;
+}
+
+.item-category-container {
+
+  
+  .item-category-list{
+    display: flex;
+    height: 600px;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+  .item-category-card{
+
+    height: 200px;
+    width: 235px;
+    padding: 30px 25px;
+    box-shadow: 0px 3px 10px #ececed;
+    text-align: center;
+    margin: 8px 35px;
+    border-radius: 10px;
+    transition: all ease-in-out 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+  }
+  .item-category-card:hover{
+    cursor: pointer;
+    box-shadow: 0px 6px 5px black;
+    transform: translateY(-5px);
+  }
+  
+ 
+}

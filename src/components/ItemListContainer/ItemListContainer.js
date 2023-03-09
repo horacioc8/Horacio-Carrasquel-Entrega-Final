@@ -1,13 +1,70 @@
-import React from 'react'
-import './styles.scss';
+import "./styles.scss";
+import { useState, useEffect } from "react";
+import products from "../../products/products";
+import { useParams } from "react-router-dom";
+import ItemList from "../ItemList";
 
 
-export const ItemListContainer = () => {
-  return (
-    <div className='greet'>
-        <h1>Bienvenidos Chavales a mi website!</h1>
-        <img classname = "emoji"src={require('./emoji.png')} height="100px" width="150px"></img>
-    </div>
-  )
+
+function getItemByCategoryDatabase(categoryURL) {
+
+  return new Promise ((resolve,reject) => {
+    
+    let productFiltered = products.filter(
+      
+      (item) => item.category === categoryURL
+    
+    );
+    resolve(productFiltered);
+    
+  });
 }
+
+
+
+function getItemFromDatabase() {
+  return new Promise ((resolve,reject) => {
+    
+    resolve(products);
+    
+  });
+}
+
+
+
+
+
+function ItemListContainer() {
+  const [user, setUser] = useState([]);
+
+  const params = useParams();
+  const idCategory = params.idCategory;
+
+ async function leerDatos(){
+    if (idCategory === undefined){
+      let respuesta = await getItemFromDatabase();
+      setUser(respuesta)
+    }
+    else{
+      let respuesta = await getItemByCategoryDatabase(idCategory)
+      setUser(respuesta)
+
+    }
+
+ }
+
+  useEffect(() => {
+    leerDatos();
+  }, [idCategory]);
+
+  return (
+    <>
+      
+      
+      <ItemList users={user} />
+    
+    </>
+  );
+}
+
 export default ItemListContainer;

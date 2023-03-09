@@ -2,7 +2,7 @@
 import './styles.scss';
 import CartWidget from '../CartWidget/CartWidget.js';
 
-
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -15,9 +15,10 @@ function Navbar() {
         </div>
 
         <ul className="menu">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Productos</a></li>
-          <li><a href="#">Contacto</a></li>
+
+          <li><Link to ={`/`}>Inicio</Link></li>
+          <li><Link to ={`/itemlist`}>Catalogo</Link></li>
+          <li><Link to ={`/catalogue`}>Prueba</Link></li>
           
         </ul>
       </div>
