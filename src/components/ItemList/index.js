@@ -1,27 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
+import "./styles.scss";
+export default function ItemList({ items }) {
 
-export default function ItemList({ users }) {
+  const navigate = useNavigate();
   return (
     <div className="item-list-container">
       <ul className="item-list">
-        {users.map((user) => (
+        {items.map((item) => (
           
           
-          <li className="item-card" key={user.id}>
-            <img src={user.image} alt={user.first_name} width = {"120px"}  height={"130px"}/>
-            <h4>{`${user.product_name}`}</h4>
-            <small>{user.brand}</small>
+          <li onClick={() => {navigate(`/detalle/${item.id}`)} }
+          style={{color: item.stock === 0 ? "#ee0033":"#151515"}} 
+            className="item-card" 
+            key={item.product_name}
+          >
+            <img src={item.image} alt={item.product_name} width = {"120px"}  height={"130px"}/>
             
-            <br />
-            <br />
-            <Link to={`/detalle/${user.id}`}>
-              <button>Detalles</button>
-            </Link>
+            <small>{item.product_name}</small>
+
+            <h3 >- {item.brand} -</h3>
+
+            <small style={{color: "black"}}> 
+               Precio: ${item.price}.00
+            </small>
+
+            { item.offer &&
+
+            <h4 className="offer" style = {{ color: "green"}}> 
+                Oferta: {item.offer}%
+            </h4>
+
+
+
+        
+            }
+          
             
           </li>
+           
           
         ))}
+
+
       </ul>
     </div>
   );
